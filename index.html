@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MoodPalette - AI Color Therapy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="bg-audio" loop preload="none">
+        <source src="https://cdn.pixabay.com/audio/2022/05/16/audio_097d43d834.mp3" type="audio/mpeg">
+    </audio>
+
+    <canvas id="particle-bg"></canvas>
+
+    <!-- Intro -->
+    <div id="intro-screen" class="screen active">
+        <div class="glass-card intro-card">
+            <div class="badge">VishwaNova 2026 • AI & Innovation</div>
+            <h1>Mood<span class="gradient-text">Palette</span></h1>
+            <p class="subtitle">Tell us how you feel. We'll paint your world.</p>
+            <button id="start-btn" class="primary-btn">
+                <span>Discover Your Colors</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <p class="hint">🎵 Ambient audio included</p>
+        </div>
+    </div>
+
+    <!-- Mood Selection -->
+    <div id="mood-screen" class="screen">
+        <div class="glass-card mood-card">
+            <h2>How are you feeling <span class="gradient-text">right now</span>?</h2>
+            <p class="mood-hint">Choose the emotion closest to your state</p>
+            <div class="mood-grid">
+                <button class="mood-btn" data-mood="happy" data-emoji="😊">
+                    <span class="mood-emoji">😊</span>
+                    <span class="mood-name">Happy</span>
+                </button>
+                <button class="mood-btn" data-mood="calm" data-emoji="🧘">
+                    <span class="mood-emoji">🧘</span>
+                    <span class="mood-name">Calm</span>
+                </button>
+                <button class="mood-btn" data-mood="energetic" data-emoji="⚡">
+                    <span class="mood-emoji">⚡</span>
+                    <span class="mood-name">Energetic</span>
+                </button>
+                <button class="mood-btn" data-mood="melancholy" data-emoji="🌧️">
+                    <span class="mood-emoji">🌧️</span>
+                    <span class="mood-name">Melancholy</span>
+                </button>
+                <button class="mood-btn" data-mood="creative" data-emoji="🎨">
+                    <span class="mood-emoji">🎨</span>
+                    <span class="mood-name">Creative</span>
+                </button>
+                <button class="mood-btn" data-mood="dreamy" data-emoji="🌙">
+                    <span class="mood-emoji">🌙</span>
+                    <span class="mood-name">Dreamy</span>
+                </button>
+                <button class="mood-btn" data-mood="fierce" data-emoji="🔥">
+                    <span class="mood-emoji">🔥</span>
+                    <span class="mood-name">Fierce</span>
+                </button>
+                <button class="mood-btn" data-mood="nostalgic" data-emoji="📷">
+                    <span class="mood-emoji">📷</span>
+                    <span class="mood-name">Nostalgic</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Intensity -->
+    <div id="intensity-screen" class="screen">
+        <div class="glass-card">
+            <h2>How <span class="gradient-text" id="mood-echo">intense</span> is it?</h2>
+            <p class="mood-hint">Slide to set the intensity of your emotion</p>
+            <div class="intensity-slider-container">
+                <input type="range" id="intensity-slider" min="0" max="100" value="50" class="intensity-slider">
+                <div class="intensity-labels">
+                    <span>Subtle</span>
+                    <span>Moderate</span>
+                    <span>Overwhelming</span>
+                </div>
+            </div>
+            <button id="generate-btn" class="primary-btn">
+                <span>Generate My Palette</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Palette Result -->
+    <div id="palette-screen" class="screen">
+        <div class="palette-header">
+            <h2 id="palette-title">Your Mood Palette</h2>
+            <p id="palette-desc" class="palette-description"></p>
+        </div>
+        <div class="palette-display" id="palette-display"></div>
+        <div class="palette-actions">
+            <button id="copy-css-btn" class="secondary-btn">📋 Copy CSS</button>
+            <button id="new-mood-btn" class="primary-btn">✨ New Mood</button>
+        </div>
+        <div class="color-details" id="color-details"></div>
+        <div id="copy-toast" class="toast">Copied to clipboard!</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
